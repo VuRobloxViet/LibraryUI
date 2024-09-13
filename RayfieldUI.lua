@@ -1,5 +1,5 @@
 for _, v in ipairs(game.CoreGui:GetChildren()) do
-    if v.Name == "ScreenGui" or v.Name == "Vu Hub Hide/UnHide" then
+    if v.Name == "ScreenGui" or v.Name == "Vu Hub Hide/UnHide" or v.Name == "Main" then
         v:Destroy()
     end
 end
@@ -66,15 +66,6 @@ TextLabel.TextSize = 12
 TextLabel.TextWrapped = true
 
 local TextLabel_Gradient = Instance.new("UIGradient")
-TextLabel_Gradient.Color = ColorSequence.new{
-    ColorSequenceKeypoint.new(0, Color3.fromRGB(26, 41, 255)),
-    ColorSequenceKeypoint.new(0.146805, Color3.fromRGB(235, 236, 255)),
-    ColorSequenceKeypoint.new(0.376511, Color3.fromRGB(38, 52, 255)),
-    ColorSequenceKeypoint.new(0.734024, Color3.fromRGB(255, 255, 255)),
-    ColorSequenceKeypoint.new(0.849741, Color3.fromRGB(220, 222, 255)),
-    ColorSequenceKeypoint.new(1, Color3.fromRGB(255, 255, 255))
-}
-TextLabel_Gradient.Parent = TextLabel
 
 spawn(function()
     local startTime = tick()
