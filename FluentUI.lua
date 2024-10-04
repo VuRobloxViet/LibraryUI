@@ -39,7 +39,7 @@ ImageButton.BorderSizePixel = 0
 ImageButton.Position = UDim2.new(0.120833337, 0, 0.1152890813, 0)
 ImageButton.Size = UDim2.new(0, 47, 0, 47)
 ImageButton.Draggable = true
-ImageButton.Image = "http://www.roblox.com/asset/?id=107242180721792"
+ImageButton.Image = "http://www.roblox.com/asset/?id=104272182839952"
 ImageButton.MouseButton1Down:connect(function()
     game:GetService("VirtualInputManager"):SendKeyEvent(true,Enum.KeyCode.RightControl,false,game)
     game:GetService("VirtualInputManager"):SendKeyEvent(false,Enum.KeyCode.RightControl,true,game)
