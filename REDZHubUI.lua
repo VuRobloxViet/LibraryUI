@@ -1,3 +1,70 @@
+for _, v in ipairs(game:GetService("CoreGui"):GetChildren()) do
+    if v.Name == "Vu Hub Status" or v.Name == "redz Library V5" then
+        v:Destroy()
+    elseif v:IsA("ScreenGui") then
+        local frame = v:FindFirstChild("Frame")
+        if frame and frame:FindFirstChild("UIListLayout") then
+            v:Destroy()
+        end
+    end
+end
+
+local ScreenGui = Instance.new("ScreenGui")
+local ImageButton = Instance.new("ImageButton")
+local UICorner = Instance.new("UICorner")
+local TextLabel = Instance.new("TextLabel")
+
+ScreenGui.Name = "Vu Hub Status"
+ScreenGui.Parent = game.CoreGui
+ScreenGui.ZIndexBehavior = Enum.ZIndexBehavior.Sibling
+
+-- TextLabel Properties
+TextLabel.Parent = ScreenGui
+TextLabel.BackgroundColor3 = Color3.fromRGB(0, 0, 0)
+TextLabel.BackgroundTransparency = 0.5
+TextLabel.BorderSizePixel = 0
+TextLabel.Position = UDim2.new(0.5, -125, 0, -30)  -- 
+TextLabel.Size = UDim2.new(0, 250, 0, 30)  -- 
+TextLabel.Font = Enum.Font.GothamBlack
+TextLabel.Text = "ELGATO TIME"
+TextLabel.TextColor3 = Color3.fromRGB(255, 255, 255)
+TextLabel.TextSize = 11.5  -- 
+TextLabel.TextStrokeTransparency = 0.8  -- 
+TextLabel.TextStrokeColor3 = Color3.fromRGB(0, 0, 0)  -- 
+TextLabel.TextWrapped = true
+
+-- UI Gradient for TextLabel background
+local TextLabel_Gradient = Instance.new("UIGradient")
+TextLabel_Gradient.Color = ColorSequence.new{
+    ColorSequenceKeypoint.new(0, Color3.fromRGB(255, 255, 255)),  -- White
+    ColorSequenceKeypoint.new(1, Color3.fromRGB(135, 206, 250))   -- Light Sky Blue
+}
+TextLabel_Gradient.Rotation = 45  -- Diagonal gradient effect
+TextLabel_Gradient.Parent = TextLabel
+
+-- UICorner for rounded edges
+UICorner.Parent = TextLabel
+UICorner.CornerRadius = UDim.new(0, 8) 
+
+local NG = game:GetService("MarketplaceService"):GetProductInfo(game.PlaceId).Name
+
+-- FPS, PING, and Timer updating logic
+spawn(function()
+    local startTime = tick()
+    while task.wait() do
+        pcall(function()
+            local elapsedTime = tick() - startTime
+            local hours = math.floor(elapsedTime / 3600)
+            local minutes = math.floor((elapsedTime % 3600) / 60)
+            local seconds = math.floor(elapsedTime % 60)
+            TextLabel.Text = "TIME: " .. hours .. ":" .. minutes .. ":" .. seconds ..
+                " | FPS: " .. math.floor(workspace:GetRealPhysicsFPS()) ..
+                " | PING: " .. game:GetService("Stats").Network.ServerStatsItem["Data Ping"]:GetValueString() ..
+                "\nGAME:  " .. NG
+        end)
+    end
+end)
+
 local MarketplaceService = game:GetService("MarketplaceService")
 local UserInputService = game:GetService("UserInputService")
 local TweenService = game:GetService("TweenService")
@@ -9,60 +76,60 @@ local Player = Players.LocalPlayer
 local PlayerMouse = Player:GetMouse()
 
 local redzlib = {
-	Themes = {
-		Darker = {
-			["Color Hub 1"] = ColorSequence.new({
-				ColorSequenceKeypoint.new(0.00, Color3.fromRGB(25, 25, 25)),
-				ColorSequenceKeypoint.new(0.50, Color3.fromRGB(32.5, 32.5, 32.5)),
-				ColorSequenceKeypoint.new(1.00, Color3.fromRGB(25, 25, 25))
-			}),
-			["Color Hub 2"] = Color3.fromRGB(30, 30, 30),
-			["Color Stroke"] = Color3.fromRGB(40, 40, 40),
-			["Color Theme"] = Color3.fromRGB(88, 101, 242),
-			["Color Text"] = Color3.fromRGB(243, 243, 243),
-			["Color Dark Text"] = Color3.fromRGB(180, 180, 180)
-		},
-		Dark = {
-			["Color Hub 1"] = ColorSequence.new({
-				ColorSequenceKeypoint.new(0.00, Color3.fromRGB(40, 40, 40)),
-				ColorSequenceKeypoint.new(0.50, Color3.fromRGB(47.5, 47.5, 47.5)),
-				ColorSequenceKeypoint.new(1.00, Color3.fromRGB(40, 40, 40))
-			}),
-			["Color Hub 2"] = Color3.fromRGB(45, 45, 45),
-			["Color Stroke"] = Color3.fromRGB(65, 65, 65),
-			["Color Theme"] = Color3.fromRGB(65, 150, 255),
-			["Color Text"] = Color3.fromRGB(245, 245, 245),
-			["Color Dark Text"] = Color3.fromRGB(190, 190, 190)
-		},
-		Purple = {
-			["Color Hub 1"] = ColorSequence.new({
-				ColorSequenceKeypoint.new(0.00, Color3.fromRGB(27.5, 25, 30)),
-				ColorSequenceKeypoint.new(0.50, Color3.fromRGB(32.5, 32.5, 32.5)),
-				ColorSequenceKeypoint.new(1.00, Color3.fromRGB(27.5, 25, 30))
-			}),
-			["Color Hub 2"] = Color3.fromRGB(30, 30, 30),
-			["Color Stroke"] = Color3.fromRGB(40, 40, 40),
-			["Color Theme"] = Color3.fromRGB(150, 0, 255),
-			["Color Text"] = Color3.fromRGB(240, 240, 240),
-			["Color Dark Text"] = Color3.fromRGB(180, 180, 180)
-		}
-	},
-	Info = {
-		Version = "1.1.0"
-	},
-	Save = {
-		UISize = {550, 380},
-		TabSize = 160,
-		Theme = "Darker"
-	},
-	Settings = {},
-	Connection = {},
-	Instances = {},
-	Elements = {},
-	Options = {},
-	Flags = {},
-	Tabs = {},
-	Icons = loadstring(game:HttpGet("https://raw.githubusercontent.com/REDzHUB/RedzLibV5/refs/heads/main/Icons.Lua"))()
+    Themes = {
+        Darker = {
+            ["Color Hub 1"] = ColorSequence.new({
+                ColorSequenceKeypoint.new(0.00, Color3.fromRGB(27.5, 25, 30)),
+                ColorSequenceKeypoint.new(0.50, Color3.fromRGB(32.5, 32.5, 32.5)),
+                ColorSequenceKeypoint.new(1.00, Color3.fromRGB(27.5, 25, 30))
+            }),
+            ["Color Hub 2"] = Color3.fromRGB(30, 30, 30),
+            ["Color Stroke"] = Color3.fromRGB(40, 40, 40),
+            ["Color Theme"] = Color3.fromRGB(150, 0, 255),
+            ["Color Text"] = Color3.fromRGB(240, 240, 240),
+            ["Color Dark Text"] = Color3.fromRGB(180, 180, 180)
+        },
+        Dark = {
+            ["Color Hub 1"] = ColorSequence.new({
+                ColorSequenceKeypoint.new(0.00, Color3.fromRGB(40, 40, 40)),
+                ColorSequenceKeypoint.new(0.50, Color3.fromRGB(47.5, 47.5, 47.5)),
+                ColorSequenceKeypoint.new(1.00, Color3.fromRGB(40, 40, 40))
+            }),
+            ["Color Hub 2"] = Color3.fromRGB(45, 45, 45),
+            ["Color Stroke"] = Color3.fromRGB(65, 65, 65),
+            ["Color Theme"] = Color3.fromRGB(65, 150, 255),
+            ["Color Text"] = Color3.fromRGB(245, 245, 245),
+            ["Color Dark Text"] = Color3.fromRGB(190, 190, 190)
+        },
+        Purple = {
+            ["Color Hub 1"] = ColorSequence.new({
+                ColorSequenceKeypoint.new(0.00, Color3.fromRGB(27.5, 25, 30)),
+                ColorSequenceKeypoint.new(0.50, Color3.fromRGB(32.5, 32.5, 32.5)),
+                ColorSequenceKeypoint.new(1.00, Color3.fromRGB(27.5, 25, 30))
+            }),
+            ["Color Hub 2"] = Color3.fromRGB(30, 30, 30),
+            ["Color Stroke"] = Color3.fromRGB(40, 40, 40),
+            ["Color Theme"] = Color3.fromRGB(150, 0, 255),
+            ["Color Text"] = Color3.fromRGB(240, 240, 240),
+            ["Color Dark Text"] = Color3.fromRGB(180, 180, 180)
+        }
+    },
+    Info = {
+        Version = "1.1.0"
+    },
+    Save = {
+        UISize = {550, 380},
+        TabSize = 160,
+        Theme = "Darker"
+    },
+    Settings = {},
+    Connection = {},
+    Instances = {},
+    Elements = {},
+    Options = {},
+    Flags = {},
+    Tabs = {},
+    Icons = loadstring(game:HttpGet("https://raw.githubusercontent.com/REDzHUB/RedzLibV5/refs/heads/main/Icons.Lua"))()
 }
 
 local ViewportSize = workspace.CurrentCamera.ViewportSize
@@ -330,7 +397,7 @@ local function MakeDrag(Instance)
 			local delta = Input.Position - DragStart
 			local Position = UDim2.new(StartPos.X.Scale, StartPos.X.Offset + delta.X / UIScale, StartPos.Y.Scale, StartPos.Y.Offset + delta.Y / UIScale)
 			-- Instance.Position = Position
-			CreateTween({Instance, "Position", Position, 0.35})
+			CreateTween({Instance, "Position", Position, 0.30})
 		end
 		
 		Instance.MouseButton1Down:Connect(function()
@@ -686,7 +753,7 @@ function redzlib:MakeWindow(Configs)
 	})
 	
 	local ControlSize1, ControlSize2 = MakeDrag(Create("ImageButton", MainFrame, {
-		Size = UDim2.new(0, 60, 0, 60),
+		Size = UDim2.new(0, 35, 0, 35),
 		Position = MainFrame.Size,
 		Active = true,
 		AnchorPoint = Vector2.new(0.8, 0.8),
@@ -791,10 +858,10 @@ function redzlib:MakeWindow(Configs)
 	end
 	function Window:AddMinimizeButton(Configs)
 		local Button = MakeDrag(Create("ImageButton", ScreenGui, {
-			Size = UDim2.fromOffset(35, 35),
+			Size = UDim2.fromOffset(45, 45),
 			Position = UDim2.fromScale(0.15, 0.15),
-			BackgroundTransparency = 1,
-			BackgroundColor3 = Theme["Color Hub 2"],
+			BackgroundTransparency = 0,
+			BackgroundColor3 = Color3.fromRGB(255, 255, 255),
 			AutoButtonColor = false
 		}))
 		
@@ -1785,17 +1852,6 @@ function redzlib:MakeWindow(Configs)
 				BackgroundTransparency = 1
 			})
 			
-			local InviteLabel = Create("TextLabel", InviteHolder, {
-				Size = UDim2.new(1, 0, 0, 15),
-				Position = UDim2.new(0, 5),
-				TextColor3 = Color3.fromRGB(40, 150, 255),
-				Font = Enum.Font.GothamBold,
-				TextXAlignment = "Left",
-				BackgroundTransparency = 1,
-				TextSize = 10,
-				Text = Invite
-			})
-			
 			local FrameHolder = InsertTheme(Create("Frame", InviteHolder, {
 				Size = UDim2.new(1, 0, 0, 65),
 				AnchorPoint = Vector2.new(0, 1),
@@ -1807,7 +1863,8 @@ function redzlib:MakeWindow(Configs)
 				Size = UDim2.new(0, 30, 0, 30),
 				Position = UDim2.new(0, 7, 0, 7),
 				Image = Logo,
-				BackgroundTransparency = 1
+				BackgroundTransparency = 0,
+				BackgroundColor3 = Color3.fromRGB(255, 255, 255)
 			})Make("Corner", ImageLabel, UDim.new(0, 4))Make("Stroke", ImageLabel)
 			
 			local LTitle = InsertTheme(Create("TextLabel", FrameHolder, {
