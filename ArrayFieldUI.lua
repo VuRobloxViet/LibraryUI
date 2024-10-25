@@ -1,5 +1,5 @@
 for _, v in ipairs(game:GetService("CoreGui"):GetChildren()) do
-    if v.Name == "Vu Hub Hide/UnHide" or v.Name == "ArrayField" or v.Name == "Main" then
+    if v.Name == "Vu Hub Hide/UnHide" or v.Name == ArrayField.Name or v.Name == "Main" then
         v:Destroy()
     elseif v:IsA("ScreenGui") then
         local frame = v:FindFirstChild("Frame")
