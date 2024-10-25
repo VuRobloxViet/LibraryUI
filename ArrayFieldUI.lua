@@ -1,6 +1,11 @@
-for _, v in ipairs(game.CoreGui:GetChildren()) do
-    if v.Name == "ScreenGui" or v.Name == "Vu Hub Hide/UnHide" or v.Name == "Main" then
+for _, v in ipairs(game:GetService("CoreGui"):GetChildren()) do
+    if v.Name == "Vu Hub Hide/UnHide" or v.Name == "Vu Hub TIME" or v.Name == "Main" then
         v:Destroy()
+    elseif v:IsA("ScreenGui") then
+        local frame = v:FindFirstChild("Frame")
+        if frame and frame:FindFirstChild("UIListLayout") then
+            v:Destroy()
+        end
     end
 end
 
