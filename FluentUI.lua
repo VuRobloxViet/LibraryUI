@@ -17,7 +17,7 @@ spawn(function()
 end)
 
 for _, v in ipairs(game:GetService("CoreGui"):GetChildren()) do
-    if v.Name == "ELGATO HUB ON/OFF" or v.Name == "ELGATO TIME" then
+    if v.Name == "Vu Hub Hide/UnHide" or v.Name == "Vu Hub TIME" then
         v:Destroy()
     elseif v:IsA("ScreenGui") then
         local frame = v:FindFirstChild("Frame")
@@ -32,7 +32,7 @@ local ImageButton = Instance.new("ImageButton")
 local UICorner = Instance.new("UICorner")
 local TextLabel = Instance.new("TextLabel")
 
-ScreenGui.Name = "ELGATO HUB ON/OFF"
+ScreenGui.Name = "Vu Hub Hide/UnHide"
 ScreenGui.Parent = game.CoreGui
 ScreenGui.ZIndexBehavior = Enum.ZIndexBehavior.Sibling
 UILock = true
@@ -58,7 +58,7 @@ TextLabel.BorderSizePixel = 0
 TextLabel.Position = UDim2.new(0.120833337, 0, 0.0602890813, 0)
 TextLabel.Size = UDim2.new(0, 250, 0, 25)
 TextLabel.Font = Enum.Font.FredokaOne
-TextLabel.Text = "ELGATO TIME"
+TextLabel.Text = "Vu Hub TIME"
 TextLabel.TextColor3 = Color3.fromRGB(255, 255, 255)
 TextLabel.TextSize = 12
 TextLabel.TextWrapped = true
