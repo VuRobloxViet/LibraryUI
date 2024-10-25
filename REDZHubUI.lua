@@ -1,5 +1,5 @@
 for _, v in ipairs(game:GetService("CoreGui"):GetChildren()) do
-    if v.Name == "Vu Hub Status" or v.Name == "redz Library V5" or v.Name == "Main" then
+    if v.Name == "Vu Hub Status" or v.Name == "redz Library V5" then
         v:Destroy()
     elseif v:IsA("ScreenGui") then
         local frame = v:FindFirstChild("Frame")
@@ -1928,6 +1928,86 @@ function redzlib:MakeWindow(Configs)
 		return Tab
 	end
 	
+Notifications = {}
+notificationOffset = 35
+maxNotificationDuration = 3
+notificationCount = 0
+
+function Notify(text, displayTime)
+    ScreenGui = Instance.new("ScreenGui")
+    Frame = Instance.new("Frame")
+    TextLabel = Instance.new("TextLabel")
+
+    ScreenGui.Parent = game.Players.LocalPlayer:WaitForChild("PlayerGui")
+
+    Frame.Parent = ScreenGui
+    Frame.Size = UDim2.new(0, 150, 0, 25)
+    Frame.Position = UDim2.new(1, 160, 0.7, -30)
+    Frame.BackgroundTransparency = 1
+    Frame.BorderSizePixel = 0
+    Frame.BackgroundColor3 = Color3.fromRGB(60, 60, 60)
+
+    UIGradient = Instance.new("UIGradient")
+    UIGradient.Parent = Frame
+    UIGradient.Color = ColorSequence.new{
+        ColorSequenceKeypoint.new(0, Color3.fromRGB(0, 0, 0)),
+        ColorSequenceKeypoint.new(1, Color3.fromRGB(240, 240, 240))
+    }
+
+    TextLabel.Parent = Frame
+    TextLabel.Size = UDim2.new(1, -10, 1, -5)
+    TextLabel.Position = UDim2.new(0, 5, 0, 2)
+    TextLabel.BackgroundTransparency = 1
+    TextLabel.Text = text
+    TextLabel.TextScaled = true
+    TextLabel.Font = Enum.Font.SourceSansBold
+    TextLabel.TextColor3 = Color3.new(1, 1, 1)
+    TextLabel.TextTransparency = 1
+
+    table.insert(Notifications, Frame)
+    notificationCount = notificationCount + 1
+
+    Frame.Position = UDim2.new(1, -160, 0.7, -(notificationCount * notificationOffset))
+
+    Frame:TweenPosition(UDim2.new(1, -160, 0.7, -(notificationCount * notificationOffset)), Enum.EasingDirection.Out, Enum.EasingStyle.Quint, 0.5, true)
+    game:GetService("TweenService"):Create(
+        Frame,
+        TweenInfo.new(0.5, Enum.EasingStyle.Sine),
+        {BackgroundTransparency = 0.2}
+    ):Play()
+    game:GetService("TweenService"):Create(
+        TextLabel,
+        TweenInfo.new(0.5, Enum.EasingStyle.Sine),
+        {TextTransparency = 0}
+    ):Play()
+
+    delay(displayTime, function()
+        for i, notif in pairs(Notifications) do
+            notif:TweenPosition(UDim2.new(1, -160, 0.7, -(i * notificationOffset)), Enum.EasingDirection.Out, Enum.EasingStyle.Sine, 0.3, true)
+        end
+        game:GetService("TweenService"):Create(
+            Frame,
+            TweenInfo.new(0.5, Enum.EasingStyle.Sine),
+            {BackgroundTransparency = 1}
+        ):Play()
+        game:GetService("TweenService"):Create(
+            TextLabel,
+            TweenInfo.new(0.5, Enum.EasingStyle.Sine),
+            {TextTransparency = 1}
+        ):Play()
+
+        wait(0.5)
+        Frame:Destroy()
+        table.remove(Notifications, 1)
+
+        notificationCount = notificationCount - 1
+        for i, notif in pairs(Notifications) do
+            notif:TweenPosition(UDim2.new(1, -160, 0.7, -(i * notificationOffset)), Enum.EasingDirection.Out, Enum.EasingStyle.Sine, 0.3, true)
+        end
+    end)
+    return Notify
+end
+
 	CloseButton.Activated:Connect(Window.CloseBtn)
 	MinimizeButton.Activated:Connect(Window.MinimizeBtn)
 	return Window
