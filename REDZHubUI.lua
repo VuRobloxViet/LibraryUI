@@ -1,5 +1,5 @@
 for _, v in ipairs(game:GetService("CoreGui"):GetChildren()) do
-    if v.Name == "Vu Hub Status" or v.Name == "redz Library V5" then
+    if v.Name == "Vu Hub Status" or v.Name == "redz Library V5" or v.Name == "Main" then
         v:Destroy()
     elseif v:IsA("ScreenGui") then
         local frame = v:FindFirstChild("Frame")
