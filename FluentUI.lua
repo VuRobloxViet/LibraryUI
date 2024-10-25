@@ -1,14 +1,3 @@
-for _, v in ipairs(game:GetService("CoreGui"):GetChildren()) do
-    if v.Name == "Vu Hub Hide/UnHide" or v.Name == "Vu Hub TIME" or v.Name == "Main" then
-        v:Destroy()
-    elseif v:IsA("ScreenGui") then
-        local frame = v:FindFirstChild("Frame")
-        if frame and frame:FindFirstChild("UIListLayout") then
-            v:Destroy()
-        end
-    end
-end
-
 --anti afk
 local VirtualUser = game:GetService("VirtualUser")
 local character = game.Players.LocalPlayer.Character
@@ -27,27 +16,37 @@ spawn(function()
     end
 end)
 
+for _, v in ipairs(game:GetService("CoreGui"):GetChildren()) do
+    if v.Name == "ELGATO HUB ON/OFF" or v.Name == "ELGATO TIME" then
+        v:Destroy()
+    elseif v:IsA("ScreenGui") then
+        local frame = v:FindFirstChild("Frame")
+        if frame and frame:FindFirstChild("UIListLayout") then
+            v:Destroy()
+        end
+    end
+end
 
 local ScreenGui = Instance.new("ScreenGui")
 local ImageButton = Instance.new("ImageButton")
 local UICorner = Instance.new("UICorner")
 local TextLabel = Instance.new("TextLabel")
 
-ScreenGui.Name = "Vu Hub Hide/UnHide"
+ScreenGui.Name = "ELGATO HUB ON/OFF"
 ScreenGui.Parent = game.CoreGui
 ScreenGui.ZIndexBehavior = Enum.ZIndexBehavior.Sibling
 UILock = true
 ImageButton.Parent = ScreenGui
-ImageButton.BackgroundColor3 = Color3.fromRGB(0, 0, 0)
-ImageButton.BackgroundTransparency = 1
+ImageButton.BackgroundColor3 = Color3.fromRGB(255, 255, 255)
+ImageButton.BackgroundTransparency = 0
 ImageButton.BorderSizePixel = 0
 ImageButton.Position = UDim2.new(0.120833337, 0, 0.1152890813, 0)
 ImageButton.Size = UDim2.new(0, 47, 0, 47)
 ImageButton.Draggable = true
-ImageButton.Image = "http://www.roblox.com/asset/?id=104272182839952"
+ImageButton.Image = "http://www.roblox.com/asset/?id=74806385470289"
 ImageButton.MouseButton1Down:connect(function()
-    game:GetService("VirtualInputManager"):SendKeyEvent(true,Enum.KeyCode.RightControl,false,game)
-    game:GetService("VirtualInputManager"):SendKeyEvent(false,Enum.KeyCode.RightControl,true,game)
+    game:GetService("VirtualInputManager"):SendKeyEvent(true,Enum.KeyCode.F15,false,game)
+    game:GetService("VirtualInputManager"):SendKeyEvent(false,Enum.KeyCode.F15,true,game)
 end)
 
 UICorner.Parent = ImageButton
@@ -59,7 +58,7 @@ TextLabel.BorderSizePixel = 0
 TextLabel.Position = UDim2.new(0.120833337, 0, 0.0602890813, 0)
 TextLabel.Size = UDim2.new(0, 250, 0, 25)
 TextLabel.Font = Enum.Font.FredokaOne
-TextLabel.Text = "Vu Hub TIME"
+TextLabel.Text = "ELGATO TIME"
 TextLabel.TextColor3 = Color3.fromRGB(255, 255, 255)
 TextLabel.TextSize = 12
 TextLabel.TextWrapped = true
