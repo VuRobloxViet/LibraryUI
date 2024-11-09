@@ -1,5 +1,5 @@
 for _, v in ipairs(game:GetService("CoreGui"):GetChildren()) do
-    if v.Name == "Vu Hub Status" or v.Name == "redz Library V5" then
+    if v.Name == "Vu Hub Status" or v.Name == "redz Library V5" or v.Name == "Vu Hub Hide/UnHide" or v.Name == "Vu Hub TIME" then
         v:Destroy()
     elseif v:IsA("ScreenGui") then
         local frame = v:FindFirstChild("Frame")
@@ -9,10 +9,11 @@ for _, v in ipairs(game:GetService("CoreGui"):GetChildren()) do
     end
 end
 
+local UserInputService = game:GetService("UserInputService")
+
 local ScreenGui = Instance.new("ScreenGui")
-local ImageButton = Instance.new("ImageButton")
-local UICorner = Instance.new("UICorner")
 local TextLabel = Instance.new("TextLabel")
+local UICorner = Instance.new("UICorner")
 
 ScreenGui.Name = "Vu Hub Status"
 ScreenGui.Parent = game.CoreGui
@@ -23,14 +24,14 @@ TextLabel.Parent = ScreenGui
 TextLabel.BackgroundColor3 = Color3.fromRGB(0, 0, 0)
 TextLabel.BackgroundTransparency = 0.5
 TextLabel.BorderSizePixel = 0
-TextLabel.Position = UDim2.new(0.5, -125, 0, -30)  -- 
-TextLabel.Size = UDim2.new(0, 250, 0, 30)  -- 
+TextLabel.Position = UDim2.new(0.5, -125, 0, -30)
+TextLabel.Size = UDim2.new(0, 230, 0, 30)
 TextLabel.Font = Enum.Font.GothamBlack
 TextLabel.Text = "Vu Hub TIME"
 TextLabel.TextColor3 = Color3.fromRGB(255, 255, 255)
-TextLabel.TextSize = 11.5  -- 
-TextLabel.TextStrokeTransparency = 0.8  -- 
-TextLabel.TextStrokeColor3 = Color3.fromRGB(0, 0, 0)  -- 
+TextLabel.TextSize = 11
+TextLabel.TextStrokeTransparency = 0.8
+TextLabel.TextStrokeColor3 = Color3.fromRGB(0, 0, 0)
 TextLabel.TextWrapped = true
 
 -- UI Gradient for TextLabel background
@@ -44,26 +45,78 @@ TextLabel_Gradient.Parent = TextLabel
 
 -- UICorner for rounded edges
 UICorner.Parent = TextLabel
-UICorner.CornerRadius = UDim.new(0, 8) 
+UICorner.CornerRadius = UDim.new(0, 8)
 
-local NG = game:GetService("MarketplaceService"):GetProductInfo(game.PlaceId).Name
+-- Required Services
+local Stats = game:GetService("Stats")
+local RunService = game:GetService("RunService")
 
 -- FPS, PING, and Timer updating logic
 spawn(function()
     local startTime = tick()
-    while task.wait() do
+    while task.wait(0.1) do  -- Reduced wait for quicker updates
         pcall(function()
             local elapsedTime = tick() - startTime
             local hours = math.floor(elapsedTime / 3600)
             local minutes = math.floor((elapsedTime % 3600) / 60)
             local seconds = math.floor(elapsedTime % 60)
-            TextLabel.Text = "TIME: " .. hours .. ":" .. minutes .. ":" .. seconds ..
-                " | FPS: " .. math.floor(workspace:GetRealPhysicsFPS()) ..
-                " | PING: " .. game:GetService("Stats").Network.ServerStatsItem["Data Ping"]:GetValueString() ..
-                "\nGAME:  " .. NG
+
+            -- Get FPS
+            local fps = math.floor(workspace:GetRealPhysicsFPS())
+            -- Get Ping
+            local ping = tonumber(Stats.Network.ServerStatsItem["Data Ping"]:GetValueString():match("%d+"))
+
+            -- Display in TextLabel
+            TextLabel.Text = "CLIENT TIME: " .. hours .. ":" .. minutes .. ":" .. seconds ..
+                " | FPS: " .. fps ..
+                " | PING: " .. ping .. " ms"
         end)
     end
 end)
+
+-- Make TextLabel draggable
+local function MakeDraggable(gui)
+    local dragging
+    local dragInput
+    local dragStart
+    local startPos
+
+    local function update(input)
+        local delta = input.Position - dragStart
+        gui.Position = UDim2.new(
+            startPos.X.Scale, startPos.X.Offset + delta.X,
+            startPos.Y.Scale, startPos.Y.Offset + delta.Y
+        )
+    end
+
+    gui.InputBegan:Connect(function(input)
+        if input.UserInputType == Enum.UserInputType.MouseButton1 or input.UserInputType == Enum.UserInputType.Touch then
+            dragging = true
+            dragStart = input.Position
+            startPos = gui.Position
+
+            input.Changed:Connect(function()
+                if input.UserInputState == Enum.UserInputState.End then
+                    dragging = false
+                end
+            end)
+        end
+    end)
+
+    gui.InputChanged:Connect(function(input)
+        if input.UserInputType == Enum.UserInputType.MouseMovement or input.UserInputType == Enum.UserInputType.Touch then
+            dragInput = input
+        end
+    end)
+
+    UserInputService.InputChanged:Connect(function(input)
+        if input == dragInput and dragging then
+            update(input)
+        end
+    end)
+end
+
+MakeDraggable(TextLabel)
 
 local MarketplaceService = game:GetService("MarketplaceService")
 local UserInputService = game:GetService("UserInputService")
@@ -1928,86 +1981,6 @@ function redzlib:MakeWindow(Configs)
 		return Tab
 	end
 	
-Notifications = {}
-notificationOffset = 35
-maxNotificationDuration = 3
-notificationCount = 0
-
-function Notify(text, displayTime)
-    ScreenGui = Instance.new("ScreenGui")
-    Frame = Instance.new("Frame")
-    TextLabel = Instance.new("TextLabel")
-
-    ScreenGui.Parent = game.Players.LocalPlayer:WaitForChild("PlayerGui")
-
-    Frame.Parent = ScreenGui
-    Frame.Size = UDim2.new(0, 150, 0, 25)
-    Frame.Position = UDim2.new(1, 160, 0.7, -30)
-    Frame.BackgroundTransparency = 1
-    Frame.BorderSizePixel = 0
-    Frame.BackgroundColor3 = Color3.fromRGB(60, 60, 60)
-
-    UIGradient = Instance.new("UIGradient")
-    UIGradient.Parent = Frame
-    UIGradient.Color = ColorSequence.new{
-        ColorSequenceKeypoint.new(0, Color3.fromRGB(0, 0, 0)),
-        ColorSequenceKeypoint.new(1, Color3.fromRGB(240, 240, 240))
-    }
-
-    TextLabel.Parent = Frame
-    TextLabel.Size = UDim2.new(1, -10, 1, -5)
-    TextLabel.Position = UDim2.new(0, 5, 0, 2)
-    TextLabel.BackgroundTransparency = 1
-    TextLabel.Text = text
-    TextLabel.TextScaled = true
-    TextLabel.Font = Enum.Font.SourceSansBold
-    TextLabel.TextColor3 = Color3.new(1, 1, 1)
-    TextLabel.TextTransparency = 1
-
-    table.insert(Notifications, Frame)
-    notificationCount = notificationCount + 1
-
-    Frame.Position = UDim2.new(1, -160, 0.7, -(notificationCount * notificationOffset))
-
-    Frame:TweenPosition(UDim2.new(1, -160, 0.7, -(notificationCount * notificationOffset)), Enum.EasingDirection.Out, Enum.EasingStyle.Quint, 0.5, true)
-    game:GetService("TweenService"):Create(
-        Frame,
-        TweenInfo.new(0.5, Enum.EasingStyle.Sine),
-        {BackgroundTransparency = 0.2}
-    ):Play()
-    game:GetService("TweenService"):Create(
-        TextLabel,
-        TweenInfo.new(0.5, Enum.EasingStyle.Sine),
-        {TextTransparency = 0}
-    ):Play()
-
-    delay(displayTime, function()
-        for i, notif in pairs(Notifications) do
-            notif:TweenPosition(UDim2.new(1, -160, 0.7, -(i * notificationOffset)), Enum.EasingDirection.Out, Enum.EasingStyle.Sine, 0.3, true)
-        end
-        game:GetService("TweenService"):Create(
-            Frame,
-            TweenInfo.new(0.5, Enum.EasingStyle.Sine),
-            {BackgroundTransparency = 1}
-        ):Play()
-        game:GetService("TweenService"):Create(
-            TextLabel,
-            TweenInfo.new(0.5, Enum.EasingStyle.Sine),
-            {TextTransparency = 1}
-        ):Play()
-
-        wait(0.5)
-        Frame:Destroy()
-        table.remove(Notifications, 1)
-
-        notificationCount = notificationCount - 1
-        for i, notif in pairs(Notifications) do
-            notif:TweenPosition(UDim2.new(1, -160, 0.7, -(i * notificationOffset)), Enum.EasingDirection.Out, Enum.EasingStyle.Sine, 0.3, true)
-        end
-    end)
-    return Notify
-end
-
 	CloseButton.Activated:Connect(Window.CloseBtn)
 	MinimizeButton.Activated:Connect(Window.MinimizeBtn)
 	return Window
