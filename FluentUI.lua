@@ -7,15 +7,6 @@ game.Players.LocalPlayer.Idled:Connect(function()
     VirtualUser:ClickButton2(Vector2.new())
 end)
 
-spawn(function()
-    while wait(60) do
-        pcall(function()
-            game:GetService'VirtualUser':CaptureController()
-            game:GetService'VirtualUser':Button1Down(Vector2.new(1e4, 1e4))
-        end)
-    end
-end)
-
 for _, v in ipairs(game:GetService("CoreGui"):GetChildren()) do
     if v.Name == "Vu Hub Hide/UnHide" or v.Name == "Vu Hub TIME" then
         v:Destroy()
