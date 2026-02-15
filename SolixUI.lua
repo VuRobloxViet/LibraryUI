@@ -1739,7 +1739,7 @@ local Library do
 					Parent = Data.Parent.Instance,
 					Name = "\0",
 					BackgroundTransparency = 1,
-					Size = UDim2New(1, 0, 0, 35),
+					Size = UDim2New(1, 0, 0, 50),
 					BorderColor3 = FromRGB(0, 0, 0),
 					ZIndex = 2,
 					BorderSizePixel = 0,
