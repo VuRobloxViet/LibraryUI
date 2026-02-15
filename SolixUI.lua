@@ -1739,7 +1739,7 @@ local Library do
 					Parent = Data.Parent.Instance,
 					Name = "\0",
 					BackgroundTransparency = 1,
-					Size = UDim2New(1, 0, 0, 50),
+					Size = UDim2New(1, 0, 0, 35),
 					BorderColor3 = FromRGB(0, 0, 0),
 					ZIndex = 2,
 					BorderSizePixel = 0,
@@ -1765,12 +1765,12 @@ local Library do
 				Items["RealSlider"] = Instances:Create("TextButton", {
 					Parent = Items["Slider"].Instance,
 					AutoButtonColor = false,
-					Text = "",
+					Text = "s",
 					Name = "\0",
 					BorderColor3 = FromRGB(0, 0, 0),
 					AnchorPoint = Vector2New(0, 1),
 					Position = UDim2New(0, 0, 1, 0),
-					Size = UDim2New(1, 0, 0, 15),
+					Size = UDim2New(1, 0, 0, 35),
 					ZIndex = 2,
 					BorderSizePixel = 0,
 					BackgroundColor3 = FromRGB(36, 32, 39)
