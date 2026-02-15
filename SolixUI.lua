@@ -237,15 +237,15 @@ local Library do
 		},
 		
         ["Darker"] = {
-            ["Background"] = FromRGB(12, 12, 14),
-            ["Inline"] = FromRGB(18, 18, 22),
-            ["Border"] = FromRGB(35, 35, 40),
+            ["Background"] = FromRGB(10, 18, 28),
+            ["Inline"] = FromRGB(14, 24, 36),
+            ["Border"] = FromRGB(28, 45, 65),
             ["Shadow"] = FromRGB(0, 0, 0),
-            ["Text"] = FromRGB(235, 235, 235),
-            ["Inactive Text"] = FromRGB(120, 120, 120),
-            ["Accent"] = FromRGB(0, 120, 255),
-            ["Element"] = FromRGB(28, 28, 32),
-            ["Gradient"] = FromRGB(40, 40, 45)
+            ["Text"] = FromRGB(225, 235, 245),
+            ["Inactive Text"] = FromRGB(120, 150, 180),
+            ["Accent"] = FromRGB(0, 140, 255),
+            ["Element"] = FromRGB(18, 30, 45),
+            ["Gradient"] = FromRGB(25, 60, 100)
         },
 
 
