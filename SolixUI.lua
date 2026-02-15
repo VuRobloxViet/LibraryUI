@@ -235,17 +235,17 @@ local Library do
 			["Element"] = FromRGB(36, 32, 39),
 			["Gradient"] = FromRGB(216, 216, 216)
 		},
-
-		["White"] = {
-            ["Background"] = FromRGB(245, 245, 245),
-            ["Inline"] = FromRGB(230, 230, 230),
-            ["Border"] = FromRGB(200, 200, 200),
+		
+        ["White"] = {
+            ["Background"] = FromRGB(255, 255, 255),
+            ["Inline"] = FromRGB(248, 248, 248),
+            ["Border"] = FromRGB(220, 220, 220),
             ["Shadow"] = FromRGB(0, 0, 0),
-            ["Text"] = FromRGB(25, 25, 25),
-            ["Inactive Text"] = FromRGB(120, 120, 120),
-            ["Accent"] = FromRGB(0, 120, 215),
-            ["Element"] = FromRGB(215, 215, 215),
-           ["Gradient"] = FromRGB(255, 255, 255)
+            ["Text"] = FromRGB(20, 20, 20),
+            ["Inactive Text"] = FromRGB(140, 140, 140),
+            ["Accent"] = FromRGB(0, 140, 255),
+            ["Element"] = FromRGB(235, 235, 235),
+            ["Gradient"] = FromRGB(255, 255, 255)
         },
 
 		["Halloween"] = {
