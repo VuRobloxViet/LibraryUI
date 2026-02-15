@@ -236,17 +236,18 @@ local Library do
 			["Gradient"] = FromRGB(216, 216, 216)
 		},
 		
-        ["White"] = {
-            ["Background"] = FromRGB(255, 255, 255),
-            ["Inline"] = FromRGB(248, 248, 248),
-            ["Border"] = FromRGB(220, 220, 220),
+        ["Darker"] = {
+            ["Background"] = FromRGB(12, 12, 14),
+            ["Inline"] = FromRGB(18, 18, 22),
+            ["Border"] = FromRGB(35, 35, 40),
             ["Shadow"] = FromRGB(0, 0, 0),
-            ["Text"] = FromRGB(20, 20, 20),
-            ["Inactive Text"] = FromRGB(140, 140, 140),
-            ["Accent"] = FromRGB(0, 140, 255),
-            ["Element"] = FromRGB(235, 235, 235),
-            ["Gradient"] = FromRGB(255, 255, 255)
+            ["Text"] = FromRGB(235, 235, 235),
+            ["Inactive Text"] = FromRGB(120, 120, 120),
+            ["Accent"] = FromRGB(0, 120, 255),
+            ["Element"] = FromRGB(28, 28, 32),
+            ["Gradient"] = FromRGB(40, 40, 45)
         },
+
 
 		["Halloween"] = {
 			["Background"] = FromRGB(48, 24, 7),
@@ -309,7 +310,7 @@ local Library do
 		}
 	}
 
-	Library.Theme = TableClone(Themes["White"])
+	Library.Theme = TableClone(Themes["Darker"])
 	Library.Themes = Themes
 
 	-- Folders
