@@ -297,7 +297,7 @@ local Library do
 		}
 	}
 
-	Library.Theme = TableClone(Themes["Bitchbot"])
+	Library.Theme = TableClone(Themes["Onetap"])
 	Library.Themes = Themes
 
 	-- Folders
