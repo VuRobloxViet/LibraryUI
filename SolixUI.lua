@@ -297,7 +297,7 @@ local Library do
 		}
 	}
 
-	Library.Theme = TableClone(Themes["Gamesense"])
+	Library.Theme = TableClone(Themes["Aqua"])
 	Library.Themes = Themes
 
 	-- Folders
