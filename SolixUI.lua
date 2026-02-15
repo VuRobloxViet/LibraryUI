@@ -237,15 +237,15 @@ local Library do
 		},
 		
         ["Darker"] = {
-            ["Background"] = FromRGB(12, 12, 14),
-            ["Inline"] = FromRGB(18, 18, 22),
-            ["Border"] = FromRGB(30, 45, 65),
+            ["Background"] = FromRGB(8, 8, 10),
+            ["Inline"] = FromRGB(14, 14, 18),
+            ["Border"] = FromRGB(28, 28, 32),
             ["Shadow"] = FromRGB(0, 0, 0),
-            ["Text"] = FromRGB(235, 235, 235),
-            ["Inactive Text"] = FromRGB(130, 130, 130),
-            ["Accent"] = FromRGB(0, 140, 255),
-            ["Element"] = FromRGB(10, 35, 70), -- xanh dương đậm
-            ["Gradient"] = FromRGB(20, 40, 65)
+            ["Text"] = FromRGB(240, 240, 240),
+            ["Inactive Text"] = FromRGB(110, 110, 115),
+            ["Accent"] = FromRGB(0, 150, 255),
+            ["Element"] = FromRGB(20, 20, 24),
+            ["Gradient"] = FromRGB(35, 35, 40)
         },
 
 		["Halloween"] = {
