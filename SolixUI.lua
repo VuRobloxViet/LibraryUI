@@ -297,7 +297,7 @@ local Library do
 		}
 	}
 
-	Library.Theme = TableClone(Themes["Aqua"])
+	Library.Theme = TableClone(Themes["Bitchbot"])
 	Library.Themes = Themes
 
 	-- Folders
@@ -1739,7 +1739,7 @@ local Library do
 					Parent = Data.Parent.Instance,
 					Name = "\0",
 					BackgroundTransparency = 1,
-					Size = UDim2New(1, 0, 0, 1000),
+					Size = UDim2New(1, 0, 0, 35),
 					BorderColor3 = FromRGB(0, 0, 0),
 					ZIndex = 2,
 					BorderSizePixel = 0,
@@ -1765,7 +1765,7 @@ local Library do
 				Items["RealSlider"] = Instances:Create("TextButton", {
 					Parent = Items["Slider"].Instance,
 					AutoButtonColor = false,
-					Text = "s",
+					Text = "",
 					Name = "\0",
 					BorderColor3 = FromRGB(0, 0, 0),
 					AnchorPoint = Vector2New(0, 1),
