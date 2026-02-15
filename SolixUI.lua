@@ -236,6 +236,18 @@ local Library do
 			["Gradient"] = FromRGB(216, 216, 216)
 		},
 
+		["White"] = {
+            ["Background"] = FromRGB(245, 245, 245),
+            ["Inline"] = FromRGB(230, 230, 230),
+            ["Border"] = FromRGB(200, 200, 200),
+            ["Shadow"] = FromRGB(0, 0, 0),
+            ["Text"] = FromRGB(25, 25, 25),
+            ["Inactive Text"] = FromRGB(120, 120, 120),
+            ["Accent"] = FromRGB(0, 120, 215),
+            ["Element"] = FromRGB(215, 215, 215),
+           ["Gradient"] = FromRGB(255, 255, 255)
+        },
+
 		["Halloween"] = {
 			["Background"] = FromRGB(48, 24, 7),
 			["Inline"] = FromRGB(34, 14, 8),
@@ -297,7 +309,7 @@ local Library do
 		}
 	}
 
-	Library.Theme = TableClone(Themes["Onetap"])
+	Library.Theme = TableClone(Themes["White"])
 	Library.Themes = Themes
 
 	-- Folders
