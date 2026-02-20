@@ -1,8 +1,3 @@
-game:GetService("Players").LocalPlayer.Idled:Connect(function()
-    game:GetService("VirtualUser"):CaptureController()
-    game:GetService("VirtualUser"):ClickButton2(Vector2.new())
-end)
-
 if getgenv().Library then 
 	getgenv().Library:Unload()
 end
@@ -5379,9 +5374,7 @@ local Library do
 			Page = self,
 
 			Name = Properties.Name or Properties.name or "Section",
-			Side = Properties.Side, 
-			--or Properties.side
-			--or 1
+			Side = Properties.Side or Properties.side or 1,
 
 			Items = { }
 		}
