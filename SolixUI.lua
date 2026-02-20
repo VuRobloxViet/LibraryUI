@@ -5379,7 +5379,8 @@ local Library do
 			Page = self,
 
 			Name = Properties.Name or Properties.name or "Section",
-			Side = Properties.Side or Properties.side,
+			Side = Properties.Side, 
+			--or Properties.side
 			--or 1
 
 			Items = { }
