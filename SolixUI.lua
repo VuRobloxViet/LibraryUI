@@ -1,3 +1,11 @@
+local VirtualUser = game:GetService("VirtualUser")
+local character = game.Players.LocalPlayer.Character
+
+game.Players.LocalPlayer.Idled:Connect(function()
+    VirtualUser:CaptureController()
+    VirtualUser:ClickButton2(Vector2.new())
+end)
+
 if getgenv().Library then 
 	getgenv().Library:Unload()
 end
