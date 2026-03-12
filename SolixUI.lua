@@ -4725,7 +4725,7 @@ local Library do
 				BorderColor3 = FromRGB(0, 0, 0),
 				AnchorPoint = Vector2New(0.5, 0.5),
 				BackgroundTransparency = 0.3,
-				Position = UDim2New(0, Camera.ViewportSize.X / 3.5, 0, Camera.ViewportSize.Y / 3.5),
+				Position = UDim2New(0.5, 0, 0.5, 0),
 				Size = Window.Size,
 				ClipsDescendants = true,
 				Visible = true,
