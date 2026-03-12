@@ -6278,7 +6278,7 @@ local Library do
 		return Dropdown
 	end
 
-	Library.Sections.Label = function(self, Text, Alignment, Tooltip, Outline, Icon)
+	Library.Sections.Label = function(self, Text, Alignment, Tooltip, Outline)
 		local Label = {
 			Window = self.Window,
 			Page = self.Page,
@@ -6291,12 +6291,13 @@ local Library do
 			Count = 0
 		}
 
-		local Items = { } do
+		local Items = {} do
 			Items["Label"] = Instances:Create("Frame", {
 				Parent = Label.Section.Items["Content"].Instance,
 				Name = "\0",
 				BackgroundTransparency = 1,
-				Size = UDim2New(1, 0, 0, 20),
+				Size = UDim2New(1, 0, 0, 0),
+				AutomaticSize = Enum.AutomaticSize.Y,
 				BorderColor3 = FromRGB(0, 0, 0),
 				ZIndex = 2,
 				BorderSizePixel = 0,
@@ -6313,19 +6314,22 @@ local Library do
 				BorderColor3 = FromRGB(0, 0, 0),
 				Text = Label.Name,
 				TextXAlignment = Enum.TextXAlignment[Label.Alignment],
-				AutomaticSize = Enum.AutomaticSize.X,
-				AnchorPoint = Vector2New(0, 0.5),
-				Size = UDim2New(0, 0, 0, 15),
+				TextYAlignment = Enum.TextYAlignment.Top,
+				AutomaticSize = Enum.AutomaticSize.Y,
+				TextWrapped = true,
+				AnchorPoint = Vector2New(0, 0),
+				Size = UDim2New(1, 0, 0, 0),
 				RichText = true,
 				BackgroundTransparency = 1,
-				Position = UDim2New(0, not Icon and 0 or 32, 0.5, 0),
+				Position = UDim2New(0, 0, 0, 0),
 				BorderSizePixel = 0,
 				ZIndex = 2,
 				TextSize = 14,
 				BackgroundColor3 = FromRGB(255, 0, 255)
-			})  Items["Text"]:AddToTheme({TextColor3 = "Text"})
+			})
+			Items["Text"]:AddToTheme({ TextColor3 = "Text" })
 
-			if Outline then 
+			if Outline then
 				Instances:Create("UIStroke", {
 					Parent = Items["Text"].Instance,
 					Name = "\0",
@@ -6333,22 +6337,6 @@ local Library do
 					LineJoinMode = Enum.LineJoinMode.Round,
 					Color = FromRGB(0, 0, 0),
 					Thickness = 1
-				})
-			end
-
-			if Icon then
-				Items["Icon"] = Instances:Create("ImageLabel", {
-					Parent = Items["Label"].Instance,
-					Name = "\0",
-					BorderColor3 = FromRGB(0, 0, 0),
-					Size = UDim2New(0, 16, 0, 16),
-					AnchorPoint = Vector2New(0, 0.5),
-					Image = "rbxassetid://"..Icon,
-					BackgroundTransparency = 1,
-					Position = UDim2New(0, 8, 0.5, 0),
-					ZIndex = 2,
-					BorderSizePixel = 0,
-					BackgroundColor3 = FromRGB(255, 255, 255)
 				})
 			end
 		end
@@ -6871,5 +6859,4 @@ local Library do
 	end
 end
 
-getgenv().Library = Library
 return Library
