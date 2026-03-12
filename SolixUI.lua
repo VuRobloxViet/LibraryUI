@@ -4723,10 +4723,9 @@ local Library do
 				Parent = (Library.Holder and Library.Holder.Instance) or nil,
 				Name = "\0",
 				BorderColor3 = FromRGB(0, 0, 0),
-				AnchorPoint = Vector2New(0.5, 0.5),
+				AnchorPoint = Vector2New(0, 0),
 				BackgroundTransparency = 0.3,
-	            Position = UDim2New(0.5, -Window.Size.X.Offset/2, 0.5, -Window.Size.Y.Offset/2)
-				--Position = UDim2New(0, Camera.ViewportSize.X / 3.5, 0, Camera.ViewportSize.Y / 3.5),
+				Position = UDim2New(0.5, Camera.ViewportSize.X / 3.5, 0.5, Camera.ViewportSize.Y / 3.5),
 				Size = Window.Size,
 				ClipsDescendants = true,
 				Visible = true,
@@ -6873,5 +6872,6 @@ local Library do
 end
 
 return Library
+
 
 
