@@ -236,18 +236,6 @@ local Library do
 			["Gradient"] = FromRGB(216, 216, 216)
 		},
 
-		["Darker"] = {
-            ["Background"] = FromRGB(8, 8, 10),
-            ["Inline"] = FromRGB(14, 14, 18),
-            ["Border"] = FromRGB(28, 28, 32),
-            ["Shadow"] = FromRGB(0, 0, 0),
-            ["Text"] = FromRGB(240, 240, 240),
-            ["Inactive Text"] = FromRGB(110, 110, 115),
-            ["Accent"] = FromRGB(0, 150, 255),
-           ["Element"] = FromRGB(20, 20, 24),
-           ["Gradient"] = FromRGB(35, 35, 40)
-        },
-
 		["Halloween"] = {
 			["Background"] = FromRGB(48, 24, 7),
 			["Inline"] = FromRGB(34, 14, 8),
@@ -259,6 +247,18 @@ local Library do
 			["Element"] = FromRGB(68, 28, 0),
 			["Gradient"] = FromRGB(150, 150, 150)
 		},
+
+		["Darker"] = {
+            ["Background"] = FromRGB(8, 8, 10),
+            ["Inline"] = FromRGB(14, 14, 18),
+            ["Border"] = FromRGB(28, 28, 32),
+            ["Shadow"] = FromRGB(0, 0, 0),
+            ["Text"] = FromRGB(240, 240, 240),
+            ["Inactive Text"] = FromRGB(110, 110, 115),
+            ["Accent"] = FromRGB(0, 150, 255),
+            ["Element"] = FromRGB(20, 20, 24),
+            ["Gradient"] = FromRGB(35, 35, 40)
+        },
 
 		["Aqua"] = {
 			["Background"] = FromRGB(19, 21, 23),
@@ -4725,7 +4725,7 @@ local Library do
 				BorderColor3 = FromRGB(0, 0, 0),
 				AnchorPoint = Vector2New(0, 0),
 				BackgroundTransparency = 0.3,
-				Position = UDim2New(0.5, Camera.ViewportSize.X / 3.5, 0.5, Camera.ViewportSize.Y / 3.5),
+				Position = UDim2New(0, Camera.ViewportSize.X / 3.5, 0, Camera.ViewportSize.Y / 3.5),
 				Size = Window.Size,
 				ClipsDescendants = true,
 				Visible = true,
@@ -6872,6 +6872,3 @@ local Library do
 end
 
 return Library
-
-
-
