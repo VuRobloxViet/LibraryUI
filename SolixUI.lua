@@ -4720,7 +4720,7 @@ local Library do
 
 		local Items = { } do
 			Items["MainFrame"] = Instances:Create("Frame", {
-				Parent = (Library.Holder and Library.Holder.Instance) or nil,
+				Parent = Library.ScreenGui.Instance,
 				Name = "\0",
 				BorderColor3 = FromRGB(0, 0, 0),
 				AnchorPoint = Vector2New(0.5, 0.5),
